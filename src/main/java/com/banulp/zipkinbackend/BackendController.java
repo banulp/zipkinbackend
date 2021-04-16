@@ -1,5 +1,7 @@
 package com.banulp.zipkinbackend;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +13,12 @@ import java.util.Date;
 @RestController
 public class BackendController {
 
+    private static final Logger log = LoggerFactory.getLogger(BackendController.class);
+
     @RequestMapping("/api")
     public String printDate(@RequestHeader(name = "user_name", required = false) String username) {
+        log.info("Hello world!" + username);
+        
         if (username != null) {
             return new Date().toString() + " " + username + "banulp";
         }
